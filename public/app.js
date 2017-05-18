@@ -1,8 +1,18 @@
 var app = function(){
-  var url = "https://api.spotify.com/v1/search?q=rock&type=album"
+  var url = "https://api.spotify.com/v1/search?q=rock&type=album";
+
+  
+  
+ 
+
+  // var select = document.querySelector('select');
+  // select.addEventListener('change', handleSelectChanged);
+
   makeRequest(url, requestComplete);
 
 }
+
+
 
 var requestComplete = function(){
   if(this.status !== 200) return;
@@ -42,6 +52,24 @@ var populateList = function(albums){
     ul.appendChild(liImageHolder);
     link.appendChild(imgAlbumCover);
     ul.appendChild(link);
+
+    var hideAlbums = function(){
+      liAlbumName.hide;
+      liImageHolder.hide;
+      imgAlbumCover.hide;
+    }
+
+    var filterResults = function(){
+      var userText = document.getElementById('search-query')
+      console.log("THE USER TEXT IS: ", userText.value);
+      // console.log("FIND THE ALBUM TITLE: " )
+      // console.log("LI ALBUM NAME: ", liAlbumName )
+      if(userText.value != liAlbumName){
+          hideAlbums()
+      }
+    }
+    var input = document.getElementById("search-query")
+    input.addEventListener('keyup', filterResults);
   })
 }
 
